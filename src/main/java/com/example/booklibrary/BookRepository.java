@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static com.example.booklibrary.BookCovers.*;
+
 @Component
 public class BookRepository {
     protected List<Book> books = new ArrayList<>(List.of(
-            new Book("0345391801", "Java", "Ullenbom"),
-            new Book("0345391802", "Java-Skript", "Mueller"),
-            new Book("0345391803", "Java", "Ullenbom")
+            new Book(SOFT_COVER, "0345391801", "Java", "Ullenbom"),
+            new Book(E_BOOK, "0345391802", "Java-Skript", "Mueller"),
+            new Book(HARD_COVER, "0345391803", "Java", "Ullenbom")
     ));
 
     public List<Book> getBooks() {

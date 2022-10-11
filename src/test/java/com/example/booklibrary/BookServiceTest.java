@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.booklibrary.BookCovers.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
@@ -19,9 +20,9 @@ class BookServiceTest {
     void getBooks(){
       // given
         List<Book> expected = List.of(
-                new Book("0345391801", "Java", "Ullenbom"),
-                new Book("0345391802", "Java-Skript", "Mueller"),
-                new Book("0345391803", "Java", "Ullenbom")
+                new Book(SOFT_COVER, "0345391801", "Java", "Ullenbom"),
+                new Book(E_BOOK, "0345391802", "Java-Skript", "Mueller"),
+                new Book(HARD_COVER, "0345391803", "Java", "Ullenbom")
         );
         when(bookRepository.getBooks()).thenReturn(expected);
         // when
@@ -34,7 +35,7 @@ class BookServiceTest {
     @Test
     void addBook() {
         // given
-        Book book = new Book("0345391804", "Python", "Thomas");
+        Book book = new Book(HOERBUCH, "0345391804", "Python", "Thomas");
 
         doNothing().when(bookRepository).addBook(book);
         when(bookRepository.getBook("0345391804")).thenReturn(book);
@@ -42,7 +43,7 @@ class BookServiceTest {
         //when
         Book actual = bookService.addBook(book);
         //then
-        assertEquals(new Book("0345391804", "Python", "Thomas"), actual);
+        assertEquals(new Book(HOERBUCH, "0345391804", "Python", "Thomas"), actual);
 
     }
 
@@ -50,7 +51,7 @@ class BookServiceTest {
     void getBookByIsbn() {
         // given
         String isbn = "0345391801";
-        Book expected = new Book("0345391801", "Java", "Ullenbom");
+        Book expected = new Book(SOFT_COVER, "0345391801", "Java", "Ullenbom");
 
         when(bookRepository.getBook(isbn)).thenReturn(expected);
 
@@ -66,7 +67,7 @@ class BookServiceTest {
     @Test
     void removeBook(){
         // given
-        Book book =  new Book("0345391801", "Java", "Ullenbom");
+        Book book =  new Book(SOFT_COVER, "0345391801", "Java", "Ullenbom");
 
         Book expected = book;
         doNothing().when(bookRepository).removeBook(book);
@@ -84,7 +85,7 @@ class BookServiceTest {
     void removeBookByIsbn(){
         // given
         String isbn = "0345391802";
-        doNothing().when(bookRepository).removeBookByIsbn(isbn);
+        when(bookRepository.removeBookByIsbn(isbn)).thenReturn(new Book(E_BOOK, "0345391802", "Java-Skript", "Mueller"));
         when(bookRepository.getBook(isbn)).thenReturn(null);
 
         // when
