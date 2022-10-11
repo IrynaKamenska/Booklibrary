@@ -2,18 +2,17 @@ package com.example.booklibrary;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.booklibrary.BookCovers.*;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.eq;
+
 import static org.mockito.Mockito.*;
 
 class BookServiceTest {
-    private BookRepository bookRepository = mock(BookRepository.class);
-    private BookService bookService = new BookService(bookRepository);
+    private final BookRepository bookRepository = mock(BookRepository.class);
+    private final BookService bookService = new BookService(bookRepository);
 
 
     @Test
@@ -93,6 +92,22 @@ class BookServiceTest {
 
         // then
         String expected = isbn;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getBookByCover(){
+        // given
+        BookCovers cover = SOFT_COVER;
+
+        Book expected = new Book(SOFT_COVER, "0345391801", "Java", "Ullenbom");
+
+        when(bookRepository.getBookByCover(cover)).thenReturn(expected);
+
+        //when
+        Book actual = bookService.getBookByCover(cover);
+
+        //then
         assertEquals(expected, actual);
     }
 

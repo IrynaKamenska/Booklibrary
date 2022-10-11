@@ -32,4 +32,8 @@ public class BookService {
         bookRepo.removeBookByIsbn(isbn);
         return isbn;
     }
+
+    public Book getBookByCover(BookCovers bookCover){
+        return bookRepo.getBookByCover(bookCover);
+    }
 }

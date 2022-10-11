@@ -47,5 +47,12 @@ public class BookRepository {
         }
         throw new NoSuchElementException("No book with isbn " + isbn + " found in this book repo.");
     }
-
+public Book getBookByCover(BookCovers bookCover){
+    for (Book book : books ) {
+        if(book.bookCovers().equals(bookCover)){
+            return book;
+        }
+    }
+    throw new NoSuchElementException("No book with isbn " + bookCover + " found in this book repo.");
+ }
 }

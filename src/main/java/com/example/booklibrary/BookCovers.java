@@ -6,3 +6,5 @@ public enum BookCovers {
     HARD_COVER,
     HOERBUCH,
 }
+
+
