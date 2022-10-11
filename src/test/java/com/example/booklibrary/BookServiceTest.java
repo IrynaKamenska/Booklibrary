@@ -47,7 +47,7 @@ class BookServiceTest {
     }
 
     @Test
-    void getBookByIsdn() {
+    void getBookByIsbn() {
         // given
         String isbn = "0345391801";
         Book expected = new Book("0345391801", "Java", "Ullenbom");

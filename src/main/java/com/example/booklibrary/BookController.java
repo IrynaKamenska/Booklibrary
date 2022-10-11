@@ -31,13 +31,14 @@ public class BookController {
          return book;
     }
 
-    @PostMapping
+
+    @DeleteMapping("/books")
     public Book removeBook(@RequestBody Book book){
         return bookService.removeBook(book);
     }
 
-    @DeleteMapping(path="books/{isbn}")
-    public String removeBookByIsbn(@PathVariable  String isbn){
+    @DeleteMapping(path="/books/{isbn}")
+    public String removeBookByIsbn(@PathVariable String isbn){
          bookService.removeBookByIsbn(isbn);
          return isbn;
     }
