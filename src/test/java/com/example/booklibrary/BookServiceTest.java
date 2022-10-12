@@ -52,14 +52,17 @@ class BookServiceTest {
         String isbn = "0345391801";
         Book expected = new Book(SOFT_COVER, "0345391801", "Java", "Ullenbom");
 
-        when(bookRepository.getBook(isbn)).thenReturn(expected);
 
         //when
-        Book actual = bookService.getBook(isbn);
+        when(bookRepository.getBook(isbn))
+                .thenReturn(expected);
+        assertNotNull(bookRepository.getBook(isbn));
+        verify(bookRepository).getBook(isbn);
 
-        //then
-        assertEquals(expected, actual);
-       // assertThat(actual).contains(expected);
+//        when(bookRepository.getBook(isbn)).thenReturn(expected);
+//        Book actual = bookService.getBook(isbn);
+//        assertEquals(expected, actual);
+
 
     }
 
